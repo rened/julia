@@ -283,6 +283,11 @@ Library improvements
     * New function `relpath` returns a relative filepath to path either from the current
       directory or from an optional start directory ([#10893]).
 
+Environment improvements
+------------------------
+
+  * Command line parameters for user code need to be separated from arguments to `julia` by `--`, like in `julia -e "@show ARGS" -- 1 2 3`
+
 Deprecated or removed
 ---------------------
 
