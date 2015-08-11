@@ -5,8 +5,10 @@
 symbol(s::Symbol) = s
 symbol(s::ASCIIString) = symbol(s.data)
 symbol(s::UTF8String) = symbol(s.data)
-symbol(a::Array{UInt8,1}) =
+function symbol(a::Array{UInt8,1})
+    length(a) > 5000 && error("symbol(a): lenght of a > 5000")
     ccall(:jl_symbol_n, Any, (Ptr{UInt8}, Int32), a, length(a))::Symbol
+end
 symbol(x...) = symbol(string(x...))
 
 gensym() = ccall(:jl_gensym, Any, ())::Symbol
